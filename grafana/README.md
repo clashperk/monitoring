@@ -55,3 +55,6 @@ Open http://localhost:3001; `docker rm -f grafana-local` when done.
   and per-fork runtime, filtered on `job="worker"`. Loop panels average over 1h with MetricsQL's
   `increase_pure`: loops finish every few minutes to ~15 min, and `increase()` drops the first pass of a
   series that appears after a restart.
+- `proxy.json` (uid `proxy`): the Clash API proxy's requests by status and endpoint, latency to upstream
+  headers, per-key responses (one key far above the rest in non-2xx is dead), connections against the
+  `MAX_CONNECTIONS` cap and process runtime, filtered on `job="proxy"`. Ratio panels are empty while idle (0/0).
