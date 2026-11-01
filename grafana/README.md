@@ -32,6 +32,15 @@ The first start runs database migrations and takes a minute or two on a small VM
 - The VictoriaMetrics datasource is provisioned (`provisioning/datasources/`), read-only in the UI, and
   reaches `http://victoria-metrics:8428` over the `monitoring` network with basic auth from `.env`.
 
+## Dashboards
+
+- JSON files in `provisioning/dashboards/` load into the **ClashPerk** folder and are read-only in the UI
+  (`allowUiUpdates: false`), so the files stay the source of truth. Grafana re-reads them every 30s: copy a
+  changed file to the host and refresh — no restart.
+- To change one visually: edit in the UI, use *Save as copy* or *Export → JSON*, and replace the file here.
+- `api.json` (uid `api`): the API's traffic, latency and errors per route, Clash API calls, and Node runtime,
+  filtered on `job="api"`. Rates use `$__rate_interval`, since metrics arrive every 30s.
+
 ## Network
 
 ```
