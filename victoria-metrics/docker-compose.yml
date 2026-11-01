@@ -1,0 +1,38 @@
+services:
+  victoria-metrics:
+    image: victoriametrics/victoria-metrics:v1.154.1
+    container_name: victoria-metrics
+    restart: unless-stopped
+    command:
+      - -storageDataPath=/storage
+      - -retentionPeriod=6M
+      - -httpListenAddr=:8428
+      - -httpAuth.username=%{VM_USER}
+      - -httpAuth.password=%{VM_PASSWORD}
+      - -opentelemetry.usePrometheusNaming
+      - -selfScrapeInterval=30s
+    environment:
+      VM_USER: ${VM_USER}
+      VM_PASSWORD: ${VM_PASSWORD}
+    ports:
+      - "8428:8428"
+    volumes:
+      - vmdata:/storage
+    networks:
+      - monitoring
+    cpus: 1
+    mem_limit: 250m
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+volumes:
+  vmdata:
+    name: victoria-metrics-data
+
+# Shared with grafana/, which joins it as external.
+networks:
+  monitoring:
+    name: monitoring

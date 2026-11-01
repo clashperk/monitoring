@@ -1,0 +1,51 @@
+services:
+  grafana:
+    image: grafana/grafana:13.2.5
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      GF_SERVER_DOMAIN: grafana.clashperk.com
+      GF_SERVER_ROOT_URL: https://grafana.clashperk.com
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GF_ADMIN_PASSWORD}
+      GF_SECURITY_COOKIE_SECURE: "true"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_USERS_AUTO_ASSIGN_ORG_ROLE: Viewer
+      # Google is the only login; the local admin stays usable over the API.
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_AUTH_GOOGLE_ENABLED: "true"
+      GF_AUTH_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GF_AUTH_GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GF_AUTH_GOOGLE_SCOPES: openid email profile
+      GF_AUTH_GOOGLE_ALLOWED_DOMAINS: clashperk.com
+      GF_AUTH_GOOGLE_HOSTED_DOMAIN: clashperk.com
+      GF_AUTH_GOOGLE_ALLOW_SIGN_UP: "true"
+      # Google has no role claims; keep roles set in the UI instead of resetting them on login.
+      GF_AUTH_GOOGLE_SKIP_ORG_ROLE_SYNC: "true"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+      VM_USER: ${VM_USER}
+      VM_PASSWORD: ${VM_PASSWORD}
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./provisioning:/etc/grafana/provisioning:ro
+    networks:
+      - monitoring
+    cpus: 1
+    mem_limit: 300m
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+volumes:
+  grafana-data:
+    name: grafana-data
+
+networks:
+  monitoring:
+    external: true
