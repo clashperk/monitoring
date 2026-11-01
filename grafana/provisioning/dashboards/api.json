@@ -480,12 +480,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -621,12 +623,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -873,7 +877,7 @@
       },
       "description": "",
       "gridPos": {
-        "h": 8,
+        "h": 12,
         "w": 12,
         "x": 0,
         "y": 25
@@ -892,12 +896,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -935,7 +941,7 @@
       },
       "description": "",
       "gridPos": {
-        "h": 8,
+        "h": 12,
         "w": 12,
         "x": 12,
         "y": 25
@@ -954,12 +960,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -996,7 +1004,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 37
       },
       "panels": []
     },
@@ -1013,7 +1021,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 34
+        "y": 38
       },
       "targets": [
         {
@@ -1029,12 +1037,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1166,7 +1176,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 34
+        "y": 38
       },
       "targets": [
         {
@@ -1182,12 +1192,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1228,7 +1240,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 34
+        "y": 38
       },
       "targets": [
         {
@@ -1244,12 +1256,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1286,7 +1300,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 46
       },
       "panels": []
     },
@@ -1303,7 +1317,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 43
+        "y": 47
       },
       "targets": [
         {
@@ -1328,12 +1342,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1374,7 +1390,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 43
+        "y": 47
       },
       "targets": [
         {
@@ -1390,12 +1406,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1436,7 +1454,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 43
+        "y": 47
       },
       "targets": [
         {
@@ -1470,12 +1488,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1516,7 +1536,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 43
+        "y": 47
       },
       "targets": [
         {
@@ -1532,12 +1552,14 @@
       "options": {
         "legend": {
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "calcs": [
             "mean",
             "max"
           ],
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "multi",
