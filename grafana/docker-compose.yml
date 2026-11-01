@@ -25,6 +25,7 @@ services:
       GF_ANALYTICS_REPORTING_ENABLED: "false"
       GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
       GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+      VM_URL: http://victoria-metrics:8428
       VM_USER: ${VM_USER}
       VM_PASSWORD: ${VM_PASSWORD}
     ports:
