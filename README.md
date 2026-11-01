@@ -28,5 +28,6 @@ Secrets never go in this repo.
 
 Services push to `https://metrics.clashperk.com/api/v1/import/prometheus` with `extra_label=job=<service>`;
 VictoriaMetrics can't reach the other servers to scrape them. Currently: the API and the worker
-(clashperk-backend `MetricsPushModule`, `job=api` / `job=worker`, worker forks add `fork`). Keep label values
+(clashperk-backend `MetricsPushModule`, `job=api` / `job=worker`, worker forks add `fork`) and the Clash API
+proxy (coc-api-proxy, `job=proxy`; it sits on the same private network, so it pushes to the private address). Keep label values
 bounded: route patterns, never raw URLs or tags.
