@@ -52,7 +52,7 @@ Open http://localhost:3001; `docker rm -f grafana-local` when done.
 - `api.json` (uid `api`): the API's traffic, latency and errors per route, Clash API calls, and Node runtime,
   filtered on `job="api"`. Rates use `$__rate_interval`, since metrics arrive every 30s.
 - `worker.json` (uid `worker`): loop durations, tracked items, events to the bot, maintenance, Clash API calls
-  and per-fork runtime, filtered on `job="worker"`. Loop panels average over 1h with MetricsQL's
+  and runtime, filtered on `job="worker"`. Loop panels average over 1h with MetricsQL's
   `increase_pure`: loops finish every few minutes to ~15 min, and `increase()` drops the first pass of a
   series that appears after a restart.
 - `proxy.json` (uid `proxy`): the Clash API proxy's requests by status and endpoint, latency to upstream
