@@ -234,8 +234,75 @@
     },
     {
       "type": "stat",
-      "title": "Maintenance",
+      "title": "Player loop",
       "id": 5,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "description": "Average time of one full player pass over the last hour.",
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "max by (loop)(increase_pure(worker_loop_duration_seconds_sum{job=\"worker\",loop=\"player\"}[1h]) / increase_pure(worker_loop_duration_seconds_count{job=\"worker\",loop=\"player\"}[1h]))",
+          "legendFormat": "__auto",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1800
+              },
+              {
+                "color": "red",
+                "value": 2700
+              }
+            ]
+          },
+          "decimals": 1
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Maintenance",
+      "id": 6,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -243,9 +310,9 @@
       "description": "Paused while the Clash API is in maintenance.",
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 18,
-        "y": 1
+        "w": 4,
+        "x": 0,
+        "y": 5
       },
       "targets": [
         {
@@ -310,7 +377,7 @@
     {
       "type": "stat",
       "title": "Clans tracked",
-      "id": 6,
+      "id": 7,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -318,8 +385,8 @@
       "description": "Clans in the clan loop.",
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 0,
+        "w": 5,
+        "x": 4,
         "y": 5
       },
       "targets": [
@@ -368,7 +435,7 @@
     {
       "type": "stat",
       "title": "Events to bot",
-      "id": 7,
+      "id": 8,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -376,8 +443,8 @@
       "description": "",
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 6,
+        "w": 5,
+        "x": 9,
         "y": 5
       },
       "targets": [
@@ -426,7 +493,7 @@
     {
       "type": "stat",
       "title": "Clash API calls",
-      "id": 8,
+      "id": 9,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -434,8 +501,8 @@
       "description": "",
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 12,
+        "w": 5,
+        "x": 14,
         "y": 5
       },
       "targets": [
@@ -484,7 +551,7 @@
     {
       "type": "stat",
       "title": "Clash API 429 / 5xx",
-      "id": 9,
+      "id": 10,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -492,8 +559,8 @@
       "description": "Share of calls rate limited or failed. 403/404 are normal and excluded.",
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 18,
+        "w": 5,
+        "x": 19,
         "y": 5
       },
       "targets": [
@@ -551,7 +618,7 @@
     {
       "type": "row",
       "title": "Loops",
-      "id": 10,
+      "id": 11,
       "collapsed": false,
       "gridPos": {
         "h": 1,
@@ -564,7 +631,7 @@
     {
       "type": "timeseries",
       "title": "Loop duration (1h average)",
-      "id": 11,
+      "id": 12,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -628,7 +695,7 @@
     {
       "type": "timeseries",
       "title": "Tracked items",
-      "id": 12,
+      "id": 13,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -692,7 +759,7 @@
     {
       "type": "row",
       "title": "Events to the bot",
-      "id": 13,
+      "id": 14,
       "collapsed": false,
       "gridPos": {
         "h": 1,
@@ -705,7 +772,7 @@
     {
       "type": "timeseries",
       "title": "Events/s by source",
-      "id": 14,
+      "id": 15,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -769,7 +836,7 @@
     {
       "type": "timeseries",
       "title": "Maintenance",
-      "id": 15,
+      "id": 16,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -833,7 +900,7 @@
     {
       "type": "row",
       "title": "Clash of Clans API",
-      "id": 16,
+      "id": 17,
       "collapsed": false,
       "gridPos": {
         "h": 1,
@@ -846,7 +913,7 @@
     {
       "type": "timeseries",
       "title": "Calls/s by status",
-      "id": 17,
+      "id": 18,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1001,7 +1068,7 @@
     {
       "type": "timeseries",
       "title": "Calls/s by endpoint",
-      "id": 18,
+      "id": 19,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1065,7 +1132,7 @@
     {
       "type": "timeseries",
       "title": "p95 by endpoint",
-      "id": 19,
+      "id": 20,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1129,7 +1196,7 @@
     {
       "type": "row",
       "title": "Runtime",
-      "id": 20,
+      "id": 21,
       "collapsed": false,
       "gridPos": {
         "h": 1,
@@ -1142,7 +1209,7 @@
     {
       "type": "timeseries",
       "title": "CPU",
-      "id": 21,
+      "id": 22,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1206,7 +1273,7 @@
     {
       "type": "timeseries",
       "title": "Event loop lag p99",
-      "id": 22,
+      "id": 23,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1270,7 +1337,7 @@
     {
       "type": "timeseries",
       "title": "Memory (RSS)",
-      "id": 23,
+      "id": 24,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1334,7 +1401,7 @@
     {
       "type": "timeseries",
       "title": "GC time",
-      "id": 24,
+      "id": 25,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"

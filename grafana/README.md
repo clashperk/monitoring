@@ -55,6 +55,9 @@ Open http://localhost:3001; `docker rm -f grafana-local` when done.
   and runtime, filtered on `job="worker"`. Loop panels average over 1h with MetricsQL's
   `increase_pure`: loops finish every few minutes to ~15 min, and `increase()` drops the first pass of a
   series that appears after a restart.
+- `bot.json` (uid `bot`): Discord interaction latency (age when received and when Discord answered our first
+  response; `outcome="unknown"` is a 10062), unknown interactions per cluster, and per-cluster event-loop stalls,
+  CPU, memory and GC, filtered on `job="bot"`. Total memory is drawn against the bot container's 16 GB limit.
 - `proxy.json` (uid `proxy`): the Clash API proxy's requests by status and endpoint, latency to upstream
   headers, per-key responses (one key far above the rest in non-2xx is dead), connections against the
   `MAX_CONNECTIONS` cap and process runtime, filtered on `job="proxy"`. Ratio panels are empty while idle (0/0).
