@@ -25,6 +25,19 @@ running it next to VictoriaMetrics instead.
 - Give it at least ~400 MB of memory: Grafana 13 settles around 340 MB, and below that it swaps until
   requests time out.
 
+## Run locally
+
+For editing dashboards: anonymous Admin, bound to localhost, `provisioning/` mounted live, so a saved JSON file
+shows up within 30s. Put `VM_URL`, `VM_USER` and `VM_PASSWORD` in an env file outside the repo, then:
+
+```bash
+docker run -d --name grafana-local -p 127.0.0.1:3001:3000 --env-file /path/to/grafana-local.env \
+  -e GF_AUTH_ANONYMOUS_ENABLED=true -e GF_AUTH_ANONYMOUS_ORG_ROLE=Admin -e GF_AUTH_DISABLE_LOGIN_FORM=true \
+  -v "$PWD/provisioning:/etc/grafana/provisioning:ro" grafana/grafana:13.2.5
+```
+
+Open http://localhost:3001; `docker rm -f grafana-local` when done.
+
 ## Datasource
 
 `provisioning/datasources/victoria-metrics.yml` is read-only in the UI and uses basic auth from `VM_USER` /
