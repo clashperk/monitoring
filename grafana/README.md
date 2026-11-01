@@ -1,51 +1,40 @@
 # Grafana
 
 Dashboards for ClashPerk metrics at **https://grafana.clashperk.com**, reading from
-[../victoria-metrics](../victoria-metrics/). Runs from `~/grafana/` on the metrics host.
+[../victoria-metrics](../victoria-metrics/) over `https://metrics.clashperk.com`. It runs on a container
+platform, built from the [Dockerfile](Dockerfile); [docker-compose.yml](docker-compose.yml) is kept for
+running it next to VictoriaMetrics instead.
 
 ## Login
 
 - Google only, restricted to `clashperk.com` accounts (`allowed_domains` + `hd`). New users become **Viewer**;
   promote them in Administration → Users. Role sync is skipped, so roles set there survive later logins.
-- `admin@clashperk.com` is org Admin and Grafana server admin.
-- The login form is disabled. The local `admin` (password in `.env`) works only over the API, e.g.
-  `curl -u admin:$GF_ADMIN_PASSWORD localhost:3000/api/...`.
+- The login form is disabled. The local `admin` (password in the platform's variables) works only over the
+  API, e.g. `curl -u admin:$GF_ADMIN_PASSWORD https://grafana.clashperk.com/api/...`.
 - The Google OAuth client must list `https://grafana.clashperk.com/login/google` as an authorized redirect URI.
 
-## Rebuild
+## Deploy
 
-VictoriaMetrics must be up first: it creates the shared `monitoring` Docker network.
+- The image is stock `grafana/grafana:13.2.5` plus `provisioning/`. Rebuild and redeploy it after changing a
+  dashboard or the datasource.
+- Configuration comes from environment variables: the `GF_*` settings in
+  [docker-compose.yml](docker-compose.yml), plus the values in [.env.example](.env.example). `VM_URL` must
+  be the public VictoriaMetrics URL when Grafana isn't on the `monitoring` Docker network.
+- Mount a persistent volume at `/var/lib/grafana` (SQLite: users, roles, preferences). Dashboards and the
+  datasource are provisioned, so losing it only loses users.
+- Give it at least ~400 MB of memory: Grafana 13 settles around 340 MB, and below that it swaps until
+  requests time out.
 
-```bash
-ssh $HOST 'mkdir -p ~/grafana'
-scp -r docker-compose.yml provisioning $HOST:grafana/
-# then on the host: create ~/grafana/.env (mode 600) from .env.example, and
-ssh $HOST 'cd ~/grafana && docker compose up -d'
-```
+## Datasource
 
-The first start runs database migrations and takes a minute or two on a small VM.
-
-## Behaviour
-
-- `grafana/grafana:13.2.5`, SQLite in the `grafana-data` volume (dashboards, users) — back that up.
-- `mem_limit: 300m`. At 200m the first start swapped and stalled a 1 GB host; steady state is ~70–150 MB.
-- The VictoriaMetrics datasource is provisioned (`provisioning/datasources/`), read-only in the UI, and
-  reaches `http://victoria-metrics:8428` over the `monitoring` network with basic auth from `.env`.
+`provisioning/datasources/victoria-metrics.yml` is read-only in the UI and uses basic auth from `VM_USER` /
+`VM_PASSWORD`. Queries go Grafana → `VM_URL`, so dashboard speed depends on that hop, not on the browser.
 
 ## Dashboards
 
 - JSON files in `provisioning/dashboards/` load into the **ClashPerk** folder and are read-only in the UI
-  (`allowUiUpdates: false`), so the files stay the source of truth. Grafana re-reads them every 30s: copy a
-  changed file to the host and refresh — no restart.
-- To change one visually: edit in the UI, use *Save as copy* or *Export → JSON*, and replace the file here.
+  (`allowUiUpdates: false`), so the files stay the source of truth.
+- To change one visually: edit in the UI, use *Save as copy* or *Export → JSON*, replace the file here and
+  redeploy.
 - `api.json` (uid `api`): the API's traffic, latency and errors per route, Clash API calls, and Node runtime,
   filtered on `job="api"`. Rates use `$__rate_interval`, since metrics arrive every 30s.
-
-## Network
-
-```
-https://grafana.clashperk.com → Cloudflare → load balancer :3000 → metrics host :3000
-```
-
-Cloudflare Origin Rule for port 3000 plus Flexible SSL; the load balancer health-checks `GET /api/health`
-and only accepts Cloudflare's IP ranges on 3000.
