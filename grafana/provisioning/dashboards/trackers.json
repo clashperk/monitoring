@@ -151,7 +151,7 @@
     },
     {
       "type": "stat",
-      "title": "legend cycle",
+      "title": "legend-logs cycle",
       "id": 4,
       "datasource": {
         "type": "prometheus",
@@ -170,7 +170,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"legend\"})",
+          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"legend-logs\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -385,7 +385,7 @@
     },
     {
       "type": "stat",
-      "title": "legend items",
+      "title": "legend-logs items",
       "id": 8,
       "datasource": {
         "type": "prometheus",
@@ -404,7 +404,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"legend\"})",
+          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"legend-logs\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -1180,7 +1180,7 @@
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
-      "description": "What each service noticed: clan changes and deletions (clan-history), members seen (global-clans), trophy changes, bans and players leaving legend (legend), battles stored and unchanged logs (battle-logs).",
+      "description": "What each service noticed: clan changes and deletions (clan-history), members seen (global-clans), trophy changes, bans and players leaving legend (legend-logs), battles stored and unchanged logs (battle-logs).",
       "gridPos": {
         "h": 8,
         "w": 16,

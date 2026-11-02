@@ -62,7 +62,7 @@ Open http://localhost:3001; `docker rm -f grafana-local` when done.
 - `proxy.json` (uid `proxy`): the Clash API proxy's requests by status and endpoint, latency to upstream
   headers, per-key responses (one key far above the rest in non-2xx is dead), connections against the
   `MAX_CONNECTIONS` cap and process runtime, filtered on `job="proxy"`. Ratio panels are empty while idle (0/0).
-- `trackers.json` (uid `trackers`): the radar services `clan-history`, `global-clans`, `legend` and
+- `trackers.json` (uid `trackers`): the radar services `clan-history`, `global-clans`, `legend-logs` and
   `battle-logs`, by the `service` label (= subcommand = container `radar-<service>`): last full-cycle
   time and size, throughput, batch time, per-service events, failed writes, Clash API calls and latency, and Go
   runtime, filtered on `job="radar"`. `clan-history` sweeps every known player, so its cycle runs for days.
