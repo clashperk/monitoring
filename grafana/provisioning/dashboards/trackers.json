@@ -52,7 +52,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_duration_seconds{job=\"metrics-backend\",service=\"clan-history\"})",
+          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"clan-history\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -111,7 +111,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_duration_seconds{job=\"metrics-backend\",service=\"global-clans\"})",
+          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"global-clans\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -170,7 +170,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_duration_seconds{job=\"metrics-backend\",service=\"legend\"})",
+          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"legend\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -229,7 +229,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_duration_seconds{job=\"metrics-backend\",service=\"battle-logs\"})",
+          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"battle-logs\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -288,7 +288,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_items{job=\"metrics-backend\",service=\"clan-history\"})",
+          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"clan-history\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -346,7 +346,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_items{job=\"metrics-backend\",service=\"global-clans\"})",
+          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"global-clans\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -404,7 +404,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_items{job=\"metrics-backend\",service=\"legend\"})",
+          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"legend\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -462,7 +462,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_cycle_items{job=\"metrics-backend\",service=\"battle-logs\"})",
+          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"battle-logs\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -520,7 +520,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "count(max by (service)(last_over_time(tracker_maintenance{job=\"metrics-backend\"}[5m]))) or vector(0)",
+          "expr": "count(max by (service)(last_over_time(tracker_maintenance{job=\"radar\"}[5m]))) or vector(0)",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -582,7 +582,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max(tracker_maintenance{job=\"metrics-backend\"})",
+          "expr": "max(tracker_maintenance{job=\"radar\"})",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -659,7 +659,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum(rate(tracker_api_requests_total{job=\"metrics-backend\"}[5m]))",
+          "expr": "sum(rate(tracker_api_requests_total{job=\"radar\"}[5m]))",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -718,7 +718,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "histogram_quantile(0.95, sum by (vmrange)(rate(tracker_api_request_duration_seconds_bucket{job=\"metrics-backend\"}[5m])))",
+          "expr": "histogram_quantile(0.95, sum by (vmrange)(rate(tracker_api_request_duration_seconds_bucket{job=\"radar\"}[5m])))",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -785,7 +785,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum(increase_pure(tracker_api_requests_total{job=\"metrics-backend\",status=~\"throttled|failed\"}[1h])) or vector(0)",
+          "expr": "sum(increase_pure(tracker_api_requests_total{job=\"radar\",status=~\"throttled|failed\"}[1h])) or vector(0)",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -848,7 +848,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum(increase_pure(tracker_write_errors_total{job=\"metrics-backend\"}[1h])) or vector(0)",
+          "expr": "sum(increase_pure(tracker_write_errors_total{job=\"radar\"}[1h])) or vector(0)",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -924,7 +924,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max by (service)(tracker_cycle_duration_seconds{job=\"metrics-backend\"})",
+          "expr": "max by (service)(tracker_cycle_duration_seconds{job=\"radar\"})",
           "legendFormat": "{{service}}",
           "refId": "A"
         }
@@ -988,7 +988,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum by (service)(rate(tracker_batch_items_total{job=\"metrics-backend\"}[$__rate_interval]))",
+          "expr": "sum by (service)(rate(tracker_batch_items_total{job=\"radar\"}[$__rate_interval]))",
           "legendFormat": "{{service}}",
           "refId": "A"
         }
@@ -1052,7 +1052,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum by (service)(rate(tracker_batch_seconds_total{job=\"metrics-backend\"}[5m])) / sum by (service)(rate(tracker_batches_total{job=\"metrics-backend\"}[5m]))",
+          "expr": "sum by (service)(rate(tracker_batch_seconds_total{job=\"radar\"}[5m])) / sum by (service)(rate(tracker_batches_total{job=\"radar\"}[5m]))",
           "legendFormat": "{{service}}",
           "refId": "A"
         }
@@ -1116,7 +1116,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max by (service)(tracker_cycle_items{job=\"metrics-backend\"})",
+          "expr": "max by (service)(tracker_cycle_items{job=\"radar\"})",
           "legendFormat": "{{service}}",
           "refId": "A"
         }
@@ -1193,7 +1193,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum by (service, kind)(rate(tracker_events_total{job=\"metrics-backend\"}[$__rate_interval])) * 60",
+          "expr": "sum by (service, kind)(rate(tracker_events_total{job=\"radar\"}[$__rate_interval])) * 60",
           "legendFormat": "{{service}} \u00b7 {{kind}}",
           "refId": "A"
         }
@@ -1257,7 +1257,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum by (service, target)(rate(tracker_write_errors_total{job=\"metrics-backend\"}[$__rate_interval])) * 60",
+          "expr": "sum by (service, target)(rate(tracker_write_errors_total{job=\"radar\"}[$__rate_interval])) * 60",
           "legendFormat": "{{service}} \u00b7 {{target}}",
           "refId": "A"
         }
@@ -1334,7 +1334,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum by (service)(rate(tracker_api_requests_total{job=\"metrics-backend\"}[$__rate_interval]))",
+          "expr": "sum by (service)(rate(tracker_api_requests_total{job=\"radar\"}[$__rate_interval]))",
           "legendFormat": "{{service}}",
           "refId": "A"
         }
@@ -1398,7 +1398,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum by (service, status)(rate(tracker_api_requests_total{job=\"metrics-backend\",status!=\"ok\"}[$__rate_interval]))",
+          "expr": "sum by (service, status)(rate(tracker_api_requests_total{job=\"radar\",status!=\"ok\"}[$__rate_interval]))",
           "legendFormat": "{{service}} \u00b7 {{status}}",
           "refId": "A"
         }
@@ -1462,7 +1462,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "histogram_quantile(0.95, sum by (service, vmrange)(rate(tracker_api_request_duration_seconds_bucket{job=\"metrics-backend\"}[$__rate_interval])))",
+          "expr": "histogram_quantile(0.95, sum by (service, vmrange)(rate(tracker_api_request_duration_seconds_bucket{job=\"radar\"}[$__rate_interval])))",
           "legendFormat": "{{service}} p95",
           "refId": "A"
         },
@@ -1471,7 +1471,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "histogram_quantile(0.5, sum by (service, vmrange)(rate(tracker_api_request_duration_seconds_bucket{job=\"metrics-backend\"}[$__rate_interval])))",
+          "expr": "histogram_quantile(0.5, sum by (service, vmrange)(rate(tracker_api_request_duration_seconds_bucket{job=\"radar\"}[$__rate_interval])))",
           "legendFormat": "{{service}} p50",
           "refId": "B"
         }
@@ -1548,7 +1548,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum by (service)(rate(process_cpu_seconds_total{job=\"metrics-backend\"}[$__rate_interval]))",
+          "expr": "sum by (service)(rate(process_cpu_seconds_total{job=\"radar\"}[$__rate_interval]))",
           "legendFormat": "{{service}}",
           "refId": "A"
         }
@@ -1612,7 +1612,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max by (service)(process_resident_memory_bytes{job=\"metrics-backend\"})",
+          "expr": "max by (service)(process_resident_memory_bytes{job=\"radar\"})",
           "legendFormat": "{{service}}",
           "refId": "A"
         }
@@ -1676,7 +1676,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max by (service)(go_goroutines{job=\"metrics-backend\"})",
+          "expr": "max by (service)(go_goroutines{job=\"radar\"})",
           "legendFormat": "{{service}}",
           "refId": "A"
         }
