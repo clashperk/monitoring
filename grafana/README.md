@@ -63,8 +63,9 @@ Open http://localhost:3001; `docker rm -f grafana-local` when done.
   headers, per-key responses (one key far above the rest in non-2xx is dead), connections against the
   `MAX_CONNECTIONS` cap and process runtime, filtered on `job="proxy"`. Ratio panels are empty while idle (0/0).
 - `trackers.json` (uid `trackers`): the radar services `clan-history`, `global-clans`, `legend-logs` and
-  `battle-logs`, by the `service` label (= subcommand = container `radar-<service>`): last full-cycle
-  time and size, throughput, batch time, per-service events, failed writes, Clash API calls and latency, and Go
+  `battle-logs`, by the `service` label (= subcommand = container `radar-<service>`). The overview is a health
+  strip (services up, API state, calls/s, p95, failed-call share, write errors) and a one-row-per-service table;
+  below it: last full-cycle time and size, throughput, batch time, per-service events, failed writes, Clash API calls and latency, and Go
   runtime, filtered on `job="radar"`. `clan-history` sweeps every known player, so its cycle runs for days.
   The "Global sweep" row follows `global-clans`' clan sweep (`GLOBAL_SWEEP`): clans due now, the oldest one's
   wait, clans scheduled, the leaver-probe queue, and membership changes per minute; it's empty while the sweep is off.
