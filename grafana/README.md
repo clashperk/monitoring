@@ -66,3 +66,5 @@ Open http://localhost:3001; `docker rm -f grafana-local` when done.
   `battle-logs`, by the `service` label (= subcommand = container `radar-<service>`): last full-cycle
   time and size, throughput, batch time, per-service events, failed writes, Clash API calls and latency, and Go
   runtime, filtered on `job="radar"`. `clan-history` sweeps every known player, so its cycle runs for days.
+  The "Global sweep" row follows `global-clans`' clan sweep (`GLOBAL_SWEEP`): clans due now, the oldest one's
+  wait, clans scheduled, the leaver-probe queue, and membership changes per minute; it's empty while the sweep is off.
