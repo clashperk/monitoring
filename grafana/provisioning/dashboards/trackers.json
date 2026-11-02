@@ -33,494 +33,18 @@
     },
     {
       "type": "stat",
-      "title": "clan-history cycle",
+      "title": "Up",
       "id": 2,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "victoria-metrics"
-      },
-      "description": "How long the last full sweep took. A sweep covers every item the service tracks once; Shows in progress until the first one after a restart finishes (clan-history takes days).",
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 0,
-        "y": 1
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "victoria-metrics"
-          },
-          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"clan-history\"})",
-          "legendFormat": "__auto",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "auto",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "s",
-          "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "decimals": 1,
-          "noValue": "in progress"
-        },
-        "overrides": []
-      }
-    },
-    {
-      "type": "stat",
-      "title": "global-clans cycle",
-      "id": 3,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "victoria-metrics"
-      },
-      "description": "How long the last full sweep took. A sweep covers every item the service tracks once; Shows in progress until the first one after a restart finishes (clan-history takes days).",
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 6,
-        "y": 1
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "victoria-metrics"
-          },
-          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"global-clans\"})",
-          "legendFormat": "__auto",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "auto",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "s",
-          "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "decimals": 1,
-          "noValue": "in progress"
-        },
-        "overrides": []
-      }
-    },
-    {
-      "type": "stat",
-      "title": "legend-logs cycle",
-      "id": 4,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "victoria-metrics"
-      },
-      "description": "How long the last full sweep took. A sweep covers every item the service tracks once; Shows in progress until the first one after a restart finishes (clan-history takes days).",
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 12,
-        "y": 1
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "victoria-metrics"
-          },
-          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"legend-logs\"})",
-          "legendFormat": "__auto",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "auto",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "s",
-          "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "decimals": 1,
-          "noValue": "in progress"
-        },
-        "overrides": []
-      }
-    },
-    {
-      "type": "stat",
-      "title": "battle-logs cycle",
-      "id": 5,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "victoria-metrics"
-      },
-      "description": "How long the last full sweep took. A sweep covers every item the service tracks once; Shows in progress until the first one after a restart finishes (clan-history takes days).",
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 18,
-        "y": 1
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "victoria-metrics"
-          },
-          "expr": "max(tracker_cycle_duration_seconds{job=\"radar\",service=\"battle-logs\"})",
-          "legendFormat": "__auto",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "auto",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "s",
-          "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "decimals": 1,
-          "noValue": "in progress"
-        },
-        "overrides": []
-      }
-    },
-    {
-      "type": "stat",
-      "title": "clan-history items",
-      "id": 6,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "victoria-metrics"
-      },
-      "description": "Items in the last full sweep: clans for global-clans, players for the rest.",
-      "gridPos": {
-        "h": 3,
-        "w": 6,
-        "x": 0,
-        "y": 5
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "victoria-metrics"
-          },
-          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"clan-history\"})",
-          "legendFormat": "__auto",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "auto",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "noValue": "in progress"
-        },
-        "overrides": []
-      }
-    },
-    {
-      "type": "stat",
-      "title": "global-clans items",
-      "id": 7,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "victoria-metrics"
-      },
-      "description": "Items in the last full sweep: clans for global-clans, players for the rest.",
-      "gridPos": {
-        "h": 3,
-        "w": 6,
-        "x": 6,
-        "y": 5
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "victoria-metrics"
-          },
-          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"global-clans\"})",
-          "legendFormat": "__auto",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "auto",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "noValue": "in progress"
-        },
-        "overrides": []
-      }
-    },
-    {
-      "type": "stat",
-      "title": "legend-logs items",
-      "id": 8,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "victoria-metrics"
-      },
-      "description": "Items in the last full sweep: clans for global-clans, players for the rest.",
-      "gridPos": {
-        "h": 3,
-        "w": 6,
-        "x": 12,
-        "y": 5
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "victoria-metrics"
-          },
-          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"legend-logs\"})",
-          "legendFormat": "__auto",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "auto",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "noValue": "in progress"
-        },
-        "overrides": []
-      }
-    },
-    {
-      "type": "stat",
-      "title": "battle-logs items",
-      "id": 9,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "victoria-metrics"
-      },
-      "description": "Items in the last full sweep: clans for global-clans, players for the rest.",
-      "gridPos": {
-        "h": 3,
-        "w": 6,
-        "x": 18,
-        "y": 5
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "victoria-metrics"
-          },
-          "expr": "max(tracker_cycle_items{job=\"radar\",service=\"battle-logs\"})",
-          "legendFormat": "__auto",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "auto",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "noValue": "in progress"
-        },
-        "overrides": []
-      }
-    },
-    {
-      "type": "stat",
-      "title": "Reporting",
-      "id": 10,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
       "description": "Services that pushed metrics in the last 5 minutes, out of 4.",
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 4,
         "x": 0,
-        "y": 8
+        "y": 1
       },
       "targets": [
         {
@@ -571,18 +95,18 @@
     },
     {
       "type": "stat",
-      "title": "Maintenance",
-      "id": 11,
+      "title": "Clash API",
+      "id": 3,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
       "description": "Paused while the Clash API is in maintenance.",
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 4,
         "x": 4,
-        "y": 8
+        "y": 1
       },
       "targets": [
         {
@@ -648,18 +172,18 @@
     },
     {
       "type": "stat",
-      "title": "Clash API calls",
-      "id": 12,
+      "title": "Calls/s",
+      "id": 4,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
-      "description": "All four services together.",
+      "description": "Clash API calls per second, all services.",
       "gridPos": {
-        "h": 4,
-        "w": 5,
+        "h": 3,
+        "w": 4,
         "x": 8,
-        "y": 8
+        "y": 1
       },
       "targets": [
         {
@@ -707,18 +231,18 @@
     },
     {
       "type": "stat",
-      "title": "Clash API p95",
-      "id": 13,
+      "title": "API p95",
+      "id": 5,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
       "description": "Time for one Clash API call, all services.",
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 4,
-        "x": 13,
-        "y": 8
+        "x": 12,
+        "y": 1
       },
       "targets": [
         {
@@ -774,18 +298,18 @@
     },
     {
       "type": "stat",
-      "title": "API 429 / failed (1h)",
-      "id": 14,
+      "title": "Failed calls (1h)",
+      "id": 6,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
-      "description": "Throttled or failed calls over the last hour. 404s are normal (banned or deleted tags).",
+      "description": "Throttled (429) or failed calls as a share of all calls over the last hour. A few HTTP/2 connection resets are normal; 404s (banned or deleted tags) don't count.",
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 4,
-        "x": 17,
-        "y": 8
+        "x": 16,
+        "y": 1
       },
       "targets": [
         {
@@ -793,7 +317,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "sum(increase_pure(tracker_api_requests_total{job=\"radar\",status=~\"throttled|failed\"}[1h])) or vector(0)",
+          "expr": "(sum(increase_pure(tracker_api_requests_total{job=\"radar\",status=~\"throttled|failed\"}[1h])) or vector(0)) / sum(increase_pure(tracker_api_requests_total{job=\"radar\"}[1h]))",
           "legendFormat": "__auto",
           "refId": "A"
         }
@@ -813,7 +337,7 @@
       },
       "fieldConfig": {
         "defaults": {
-          "unit": "short",
+          "unit": "percentunit",
           "color": {
             "mode": "thresholds"
           },
@@ -825,12 +349,16 @@
                 "value": null
               },
               {
+                "color": "orange",
+                "value": 0.001
+              },
+              {
                 "color": "red",
-                "value": 1
+                "value": 0.01
               }
             ]
           },
-          "decimals": 0
+          "decimals": 3
         },
         "overrides": []
       }
@@ -838,17 +366,17 @@
     {
       "type": "stat",
       "title": "Write errors (1h)",
-      "id": 15,
+      "id": 7,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
       "description": "Failed Mongo or ClickHouse writes over the last hour.",
       "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 21,
-        "y": 8
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 1
       },
       "targets": [
         {
@@ -899,22 +427,248 @@
       }
     },
     {
+      "type": "table",
+      "title": "Services",
+      "id": 8,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "description": "One row per service. Last cycle and items per cycle are the last finished full sweep (\"in progress\" until the first after a restart; clan-history takes days).",
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "max by (service)(tracker_cycle_duration_seconds{job=\"radar\"})",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "max by (service)(tracker_cycle_items{job=\"radar\"})",
+          "format": "table",
+          "instant": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum by (service)(rate(tracker_batch_items_total{job=\"radar\"}[5m]))",
+          "format": "table",
+          "instant": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum by (service)(rate(tracker_api_requests_total{job=\"radar\"}[5m]))",
+          "format": "table",
+          "instant": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "histogram_quantile(0.95, sum by (service, vmrange)(rate(tracker_api_request_duration_seconds_bucket{job=\"radar\"}[5m])))",
+          "format": "table",
+          "instant": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "max by (service)(process_resident_memory_bytes{job=\"radar\"})",
+          "format": "table",
+          "instant": true,
+          "refId": "F"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "indexByName": {
+              "service": 0,
+              "Value #A": 1,
+              "Value #B": 2,
+              "Value #C": 3,
+              "Value #D": 4,
+              "Value #E": 5,
+              "Value #F": 6
+            },
+            "renameByName": {
+              "service": "Service",
+              "Value #A": "Last cycle",
+              "Value #B": "Items per cycle",
+              "Value #C": "Items/s",
+              "Value #D": "Calls/s",
+              "Value #E": "API p95",
+              "Value #F": "Memory"
+            }
+          }
+        }
+      ],
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "displayName": "Service",
+            "desc": false
+          }
+        ]
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto"
+          },
+          "decimals": 1
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last cycle"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "noValue",
+                "value": "in progress"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Items per cycle"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "noValue",
+                "value": "in progress"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Items/s"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "noValue",
+                "value": "0"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Calls/s"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "reqps"
+              },
+              {
+                "id": "noValue",
+                "value": "0"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "API p95"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "noValue",
+                "value": "-"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Memory"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "noValue",
+                "value": "-"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "type": "row",
       "title": "Sweeps",
-      "id": 16,
+      "id": 9,
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 10
       },
       "panels": []
     },
     {
       "type": "timeseries",
       "title": "Cycle duration",
-      "id": 17,
+      "id": 10,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -924,7 +678,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 13
+        "y": 11
       },
       "targets": [
         {
@@ -978,7 +732,7 @@
     {
       "type": "timeseries",
       "title": "Throughput",
-      "id": 18,
+      "id": 11,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -988,7 +742,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 13
+        "y": 11
       },
       "targets": [
         {
@@ -1042,7 +796,7 @@
     {
       "type": "timeseries",
       "title": "Batch duration",
-      "id": 19,
+      "id": 12,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1052,7 +806,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 21
+        "y": 19
       },
       "targets": [
         {
@@ -1106,7 +860,7 @@
     {
       "type": "timeseries",
       "title": "Items per cycle",
-      "id": 20,
+      "id": 13,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1116,7 +870,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 21
+        "y": 19
       },
       "targets": [
         {
@@ -1170,20 +924,20 @@
     {
       "type": "row",
       "title": "Events",
-      "id": 21,
+      "id": 14,
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 27
       },
       "panels": []
     },
     {
       "type": "timeseries",
       "title": "Events/min",
-      "id": 22,
+      "id": 15,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1193,7 +947,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 30
+        "y": 28
       },
       "targets": [
         {
@@ -1247,7 +1001,7 @@
     {
       "type": "timeseries",
       "title": "Write errors/min",
-      "id": 23,
+      "id": 16,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1257,7 +1011,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 30
+        "y": 28
       },
       "targets": [
         {
@@ -1312,20 +1066,20 @@
     {
       "type": "row",
       "title": "Clash of Clans API",
-      "id": 24,
+      "id": 17,
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 36
       },
       "panels": []
     },
     {
       "type": "timeseries",
       "title": "Calls/s by service",
-      "id": 25,
+      "id": 18,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1335,7 +1089,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 39
+        "y": 37
       },
       "targets": [
         {
@@ -1389,7 +1143,7 @@
     {
       "type": "timeseries",
       "title": "Calls/s by status",
-      "id": 26,
+      "id": 19,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1399,7 +1153,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 39
+        "y": 37
       },
       "targets": [
         {
@@ -1453,7 +1207,7 @@
     {
       "type": "timeseries",
       "title": "Latency p50 / p95",
-      "id": 27,
+      "id": 20,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1463,7 +1217,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 39
+        "y": 37
       },
       "targets": [
         {
@@ -1526,20 +1280,20 @@
     {
       "type": "row",
       "title": "Global sweep",
-      "id": 28,
+      "id": 21,
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 45
       },
       "panels": []
     },
     {
       "type": "stat",
       "title": "Due now",
-      "id": 29,
+      "id": 22,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1549,7 +1303,7 @@
         "h": 4,
         "w": 6,
         "x": 0,
-        "y": 48
+        "y": 46
       },
       "targets": [
         {
@@ -1605,7 +1359,7 @@
     {
       "type": "stat",
       "title": "Oldest due",
-      "id": 30,
+      "id": 23,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1615,7 +1369,7 @@
         "h": 4,
         "w": 6,
         "x": 6,
-        "y": 48
+        "y": 46
       },
       "targets": [
         {
@@ -1672,7 +1426,7 @@
     {
       "type": "stat",
       "title": "Clans scheduled",
-      "id": 31,
+      "id": 24,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1682,7 +1436,7 @@
         "h": 4,
         "w": 6,
         "x": 12,
-        "y": 48
+        "y": 46
       },
       "targets": [
         {
@@ -1730,7 +1484,7 @@
     {
       "type": "stat",
       "title": "Probe queue",
-      "id": 32,
+      "id": 25,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1740,7 +1494,7 @@
         "h": 4,
         "w": 6,
         "x": 18,
-        "y": 48
+        "y": 46
       },
       "targets": [
         {
@@ -1793,7 +1547,7 @@
     {
       "type": "timeseries",
       "title": "Membership changes/min",
-      "id": 33,
+      "id": 26,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1803,7 +1557,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 52
+        "y": 50
       },
       "targets": [
         {
@@ -1857,7 +1611,7 @@
     {
       "type": "timeseries",
       "title": "Backlog and lag",
-      "id": 34,
+      "id": 27,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1867,7 +1621,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 52
+        "y": 50
       },
       "targets": [
         {
@@ -1930,20 +1684,20 @@
     {
       "type": "row",
       "title": "Runtime",
-      "id": 35,
+      "id": 28,
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 60
+        "y": 58
       },
       "panels": []
     },
     {
       "type": "timeseries",
       "title": "CPU",
-      "id": 36,
+      "id": 29,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1953,7 +1707,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 61
+        "y": 59
       },
       "targets": [
         {
@@ -2007,7 +1761,7 @@
     {
       "type": "timeseries",
       "title": "Memory (RSS)",
-      "id": 37,
+      "id": 30,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -2017,7 +1771,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 61
+        "y": 59
       },
       "targets": [
         {
@@ -2071,7 +1825,7 @@
     {
       "type": "timeseries",
       "title": "Goroutines",
-      "id": 38,
+      "id": 31,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -2081,7 +1835,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 61
+        "y": 59
       },
       "targets": [
         {
