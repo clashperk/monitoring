@@ -861,6 +861,176 @@
       }
     },
     {
+      "type": "table",
+      "title": "Slash commands: slow and unknown responses",
+      "id": 23,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "description": "Per command over the selected range. Slow = answered after 2 s; unknown = 10062. Sorted by % slow or unknown.",
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\"}[$__range]))",
+          "refId": "A",
+          "instant": true,
+          "format": "table"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\",result=\"slow\"}[$__range])) or sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\"}[$__range])) * 0",
+          "refId": "B",
+          "instant": true,
+          "format": "table"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\",result=\"unknown\"}[$__range])) or sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\"}[$__range])) * 0",
+          "refId": "C",
+          "instant": true,
+          "format": "table"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\",result=\"error\"}[$__range])) or sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\"}[$__range])) * 0",
+          "refId": "D",
+          "instant": true,
+          "format": "table"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "(100 * sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\",result=~\"slow|unknown\"}[$__range])) / sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\"}[$__range]))) or sum by (command)(increase_pure(discord_command_responses_total{job=\"bot\"}[$__range])) * 0",
+          "refId": "E",
+          "instant": true,
+          "format": "table"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "command": "Command",
+              "Value #A": "Responses",
+              "Value #B": "Slow",
+              "Value #C": "Unknown",
+              "Value #D": "Error",
+              "Value #E": "% slow or unknown"
+            },
+            "indexByName": {
+              "command": 0,
+              "Value #A": 1,
+              "Value #B": 2,
+              "Value #C": 3,
+              "Value #D": 4,
+              "Value #E": 5
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "sort": [
+              {
+                "field": "% slow or unknown",
+                "desc": true
+              }
+            ]
+          }
+        }
+      ],
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "custom": {
+            "align": "auto"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "% slow or unknown"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "transparent",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 5
+                    },
+                    {
+                      "color": "red",
+                      "value": 15
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "type": "row",
       "title": "Clusters",
       "id": 15,
@@ -869,7 +1039,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 52
       },
       "panels": []
     },
@@ -886,7 +1056,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 43
+        "y": 53
       },
       "targets": [
         {
@@ -950,7 +1120,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 43
+        "y": 53
       },
       "targets": [
         {
@@ -1014,7 +1184,7 @@
         "h": 12,
         "w": 8,
         "x": 0,
-        "y": 55
+        "y": 65
       },
       "targets": [
         {
@@ -1078,7 +1248,7 @@
         "h": 12,
         "w": 8,
         "x": 8,
-        "y": 55
+        "y": 65
       },
       "targets": [
         {
@@ -1142,7 +1312,7 @@
         "h": 12,
         "w": 8,
         "x": 16,
-        "y": 55
+        "y": 65
       },
       "targets": [
         {
@@ -1206,7 +1376,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 67
+        "y": 77
       },
       "targets": [
         {
@@ -1295,7 +1465,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 67
+        "y": 77
       },
       "targets": [
         {

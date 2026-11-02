@@ -56,7 +56,8 @@ Open http://localhost:3001; `docker rm -f grafana-local` when done.
   `increase_pure`: loops finish every few minutes to ~15 min, and `increase()` drops the first pass of a
   series that appears after a restart.
 - `bot.json` (uid `bot`): Discord interaction latency (age when received and when Discord answered our first
-  response; `outcome="unknown"` is a 10062), unknown interactions per cluster, and per-cluster event-loop stalls,
+  response; `outcome="unknown"` is a 10062), unknown interactions per cluster, a per-command table of slow
+  (> 2 s) and unknown responses, and per-cluster event-loop stalls,
   CPU, memory and GC, filtered on `job="bot"`. Total memory is drawn against the bot container's 16 GB limit.
 - `proxy.json` (uid `proxy`): the Clash API proxy's requests by status and endpoint, latency to upstream
   headers, per-key responses (one key far above the rest in non-2xx is dead), connections against the
