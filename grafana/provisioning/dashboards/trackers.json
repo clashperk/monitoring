@@ -1298,7 +1298,7 @@
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
-      "description": "Clans whose nextSweepAt has passed. Should drain to near 0 after the bootstrap.",
+      "description": "Clans whose nextSweepAt has passed. Hundreds is normal; a steady climb means WORKERS can't keep up.",
       "gridPos": {
         "h": 4,
         "w": 6,
@@ -1555,7 +1555,7 @@
       "description": "joined: moved into a clan; new_player: first seen; left: stint closed and probe queued; probe_*: where leavers went; clan_deleted: 404s; seeded: clans added to the schedule.",
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 50
       },
@@ -1610,18 +1610,18 @@
     },
     {
       "type": "timeseries",
-      "title": "Backlog and lag",
+      "title": "Clans due",
       "id": 27,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
-      "description": "Due clans (left) and the oldest one's wait.",
+      "description": "Clans whose nextSweepAt has passed, sampled every 5 min.",
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 50
+        "w": 8,
+        "x": 0,
+        "y": 58
       },
       "targets": [
         {
@@ -1632,15 +1632,6 @@
           "expr": "max(tracker_sweep_backlog{job=\"radar\",service=\"global-clans\"})",
           "legendFormat": "due now",
           "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "victoria-metrics"
-          },
-          "expr": "max(tracker_sweep_lag_seconds{job=\"radar\",service=\"global-clans\"}) / 60",
-          "legendFormat": "oldest due (min)",
-          "refId": "B"
         }
       ],
       "options": {
@@ -1682,22 +1673,151 @@
       }
     },
     {
+      "type": "timeseries",
+      "title": "Oldest due",
+      "id": 28,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "description": "How long the most overdue clan has waited. Seconds to minutes when healthy.",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 58
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "max(tracker_sweep_lag_seconds{job=\"radar\",service=\"global-clans\"})",
+          "legendFormat": "oldest due",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max"
+          ],
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "lineWidth": 2,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          },
+          "min": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Probe queue",
+      "id": 29,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "description": "Leavers waiting for a /players probe; up to 750 are drained per batch. Should hover near 0.",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 58
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "max(tracker_sweep_probe_queue{job=\"radar\",service=\"global-clans\"})",
+          "legendFormat": "queued",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max"
+          ],
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "lineWidth": 2,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          },
+          "min": 0,
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
       "type": "row",
       "title": "Runtime",
-      "id": 28,
+      "id": 30,
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 66
       },
       "panels": []
     },
     {
       "type": "timeseries",
       "title": "CPU",
-      "id": 29,
+      "id": 31,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1707,7 +1827,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 59
+        "y": 67
       },
       "targets": [
         {
@@ -1761,7 +1881,7 @@
     {
       "type": "timeseries",
       "title": "Memory (RSS)",
-      "id": 30,
+      "id": 32,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1771,7 +1891,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 59
+        "y": 67
       },
       "targets": [
         {
@@ -1825,7 +1945,7 @@
     {
       "type": "timeseries",
       "title": "Goroutines",
-      "id": 31,
+      "id": 33,
       "datasource": {
         "type": "prometheus",
         "uid": "victoria-metrics"
@@ -1835,7 +1955,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 59
+        "y": 67
       },
       "targets": [
         {
