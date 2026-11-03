@@ -434,7 +434,7 @@
         "type": "prometheus",
         "uid": "victoria-metrics"
       },
-      "description": "One row per service. Last cycle and items per cycle are the last finished full sweep (\"in progress\" until the first after a restart; clan-history takes days).",
+      "description": "One row per service. Last cycle and items per cycle are the last finished full sweep (\"in progress\" until the first after a restart). global-clans sweeps each clan on its own schedule, so it has no full pass: it shows \"continuous\" and the clans scheduled.",
       "gridPos": {
         "h": 6,
         "w": 24,
@@ -447,7 +447,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max by (service)(tracker_cycle_duration_seconds{job=\"radar\"})",
+          "expr": "max by (service)(tracker_cycle_duration_seconds{job=\"radar\"}) or max by (service)(tracker_sweep_clans{job=\"radar\"}) * 0 - 1",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -457,7 +457,7 @@
             "type": "prometheus",
             "uid": "victoria-metrics"
           },
-          "expr": "max by (service)(tracker_cycle_items{job=\"radar\"})",
+          "expr": "max by (service)(tracker_cycle_items{job=\"radar\"}) or max by (service)(tracker_sweep_clans{job=\"radar\"})",
           "format": "table",
           "instant": true,
           "refId": "B"
@@ -646,6 +646,28 @@
               {
                 "id": "noValue",
                 "value": "-"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last cycle"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "-1": {
+                        "text": "continuous",
+                        "index": 0
+                      }
+                    }
+                  }
+                ]
               }
             ]
           }
